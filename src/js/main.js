@@ -17,6 +17,23 @@ if ('serviceWorker' in navigator) {
 // place your code below
 
 
-console.log(`Hello world!`);
+const hello = (name, age) => console.log(`Witaj ${name}, masz ${age} lat.`);
+
+hello ("Anastazja", 25); 
+
+const navigationSwitcher = document.querySelector('.navigation__switcher--js');
+const navigationList = document.querySelector('.navigation__list--js');
+
+navigationSwitcher.addEventListener('click', (e) =>{
+navigationList.classList.toggle('navigation__list--visible');
+if (navigationList.classList.contains('navigation__list--visible')){
+  navigationSwitcher.innerHTML = "x";
+}
+else {
+  navigationSwitcher.innerHTML ="≡";
+}
+});
+
+
 
 
