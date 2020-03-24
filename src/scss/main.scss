@@ -1,23 +1,6 @@
 @import "_normalize";
 @import "_variables";
 
-
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-body {
-  color: $yellow;
-  background: $violet;
-}
-
-
-
-
 html {
   box-sizing: border-box;
 }
@@ -28,13 +11,23 @@ html {
   box-sizing: inherit;
 }
 
-body {
+@mixin gradient {
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(117, 3, 83, 1) 0%,
     rgba(23, 0, 36, 1) 100%
   );
+}
+
+@mixin sectionHeader {
+  font-size: 24px;
+  color: #852354;
+  font-weight: bold;
+}
+
+body {
+  @include gradient;
   color: #955f7a;
   font-family: Helvetica;
   margin: auto;
@@ -42,12 +35,18 @@ body {
   font-size: 14px;
   line-height: 1, 5;
   padding: 16px;
+  @media (min-width: 1200px) {
+    max-width: 900px;
+  }
 }
 
 .aboutMe {
   position: relative;
   overflow: hidden;
   grid-area: aboutMe;
+  &__header {
+    @include sectionHeader;
+  }
 }
 
 .anastazja {
@@ -56,33 +55,27 @@ body {
   display: block;
   float: left;
   margin: 0 16px 16px 0;
+  @media (max-width: $tablet) {
+    display: none;
+  }
 }
 
 .content {
   grid-area: content;
 }
 
-.header__title {
-  grid-area: header;
-}
-
-.diary__header,
-.aboutMe__header {
-  font-size: 24px;
-  color: #852354;
-  font-weight: bold;
-}
 .diary {
   clear: left;
-}
-.diary__day {
-  margin: 16px;
-}
-
-.diary__dayHeader {
-  color: #852354;
-  font-size: 16px;
-  font-weight: bold;
+  &__header {
+    @include sectionHeader;
+  }
+  &__day {
+    margin: 16px;
+    &Header {
+      @include sectionHeader;
+      font-size: 16px;
+    }
+  }
 }
 
 .grid {
@@ -91,42 +84,16 @@ body {
   grid-column-gap: 16px;
 }
 
+.header {
+  &__title {
+    grid-area: header;
+    padding: 36px;
+  }
+}
+
 .hobby__list {
   list-style: none;
   padding: 0;
-}
-
-/* .box, .box2 {
-  width: 100px;
-  height: 100px;
-  background: chartreuse;
-  padding: 10px;
-  border: 10px solid red;
-  margin: 10px;
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  position: sticky;
-
-}
-.box {
-  z-index:2;
-  position: fixed;
-}
-
-.box2 {
-  top: 30px;
- left: 55%;
-  background: blueviolet;
-} */
-
-.top {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  /* color: goldenrod; */
-  text-decoration: none;
 }
 
 .site-header {
@@ -136,13 +103,16 @@ body {
   left: 0;
   box-sizing: border-box;
   padding: 24px;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(117, 3, 83, 1) 0%,
-    rgba(23, 0, 36, 1) 100%
-  );
+  @include gradient;
   z-index: 2;
+}
+
+.top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  /* color: goldenrod; */
+  text-decoration: none;
 }
 
 .main {
@@ -156,34 +126,55 @@ body {
   grid-template-rows: 100px;
   grid-row-gap: 16px;
   grid-column-gap: 32px;
+  @media (max-width: $tablet) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "aboutMe"
+      "content"
+      "footer";
+  }
+  }
 }
 
 .navigation {
-}
-
-.navigation__list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.navigation__item {
-  display: block;
-  margin: 8px 16px;
-}
-
-.navigation__link {
-  text-decoration: none;
-}
-
-.navigation__switcher {
-  background: none;
-  border: none;
-  color: #955f7a;
-  position: absolute;
-  right: 16px;
-  top: 16px;
+  &__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    &--visible {
+      @media (max-width: $mobile) {
+        display: flex;
+        color: hotpink;
+      }
+    }
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      display: none;
+    }
+  }
+  &__item {
+    display: block;
+    margin: 8px 16px;
+  }
+  &__link {
+    text-decoration: none;
+    color: $lightpink;
+  }
+  &__switcher {
+    display: none;
+    @media (max-width: $mobile) {
+      display: block;
+      background: none;
+      border: none;
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      color: $lightpink;
+      z-index: 3;
+    }
+  }
 }
 
 @media (max-width: 640px) {
@@ -214,11 +205,5 @@ body {
 @media (min-width: 640px) {
   .navigation__switcher {
     display: none;
-  }
-}
-
-@media (min-width: 1200px) {
-  body {
-    max-width: 900px;
   }
 }
