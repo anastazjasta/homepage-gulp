@@ -20,7 +20,7 @@ const errorHandler = err => {
 };
 
 gulp.task("assets", function() {
-  return gulp.src("./src/assets/**/*").pipe(gulp.dest("./dist/assets/"));
+  return gulp.src("./src/assets/**/*").pipe(gulp.dest("./assets/"));
 });
 
 gulp.task("html", function() {

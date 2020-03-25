@@ -55,7 +55,7 @@ body {
   display: block;
   float: left;
   margin: 0 16px 16px 0;
-  @media (max-width: $tablet) {
+  @media (max-width: $mobile) {
     display: none;
   }
 }
@@ -135,7 +135,7 @@ body {
       "footer";
   }
   }
-}
+
 
 .navigation {
   &__list {
