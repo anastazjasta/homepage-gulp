@@ -1,5 +1,7 @@
 @import "_normalize";
 @import "_variables";
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=latin-ext');
+
 
 html {
   box-sizing: border-box;
@@ -27,9 +29,9 @@ html {
 }
 
 body {
-  @include gradient;
+
   color: #955f7a;
-  font-family: Helvetica;
+  font-family: 'Ubuntu';
   margin: auto;
   max-width: 800px;
   font-size: 14px;
