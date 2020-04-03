@@ -1,4 +1,13 @@
-# wtf-gulp-starter
+![Homepage screenshot](github/Clipboard01.png)
+
+
+# Mój homepage
+
+Zapraszam na moją stronę: [Strona domowa Anastazji Stasiewicz](https://anastazjasta.github.io/homepage-gulp)
+
+## Jak uruchomić stronę lokalnie
+
+Aby uruchomić moją stronę lokalnie wykonaj poniższe polecenia:
 
 `npm install -g gulp-cli`
 
